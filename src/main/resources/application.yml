@@ -1,0 +1,9 @@
+server:
+  port: 9991
+
+
+
+gitee:
+  owner: tyrell
+  access_token: adasd
+  repo: tyrell
