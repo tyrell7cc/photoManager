@@ -2,12 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <title>Title</title>
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <style>
+        #uuploader{
+            text-align: center;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 2em;
+        }
+    </style>
 </head>
 <body>
-    <form enctype="multipart/form-data" method="post" action="/gitee">
-        <input type="file" name="file">
-        <input type="submit">
-    </form>
+
+
+<div id="hello">
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
+        <el-menu-item index="1" @click="switchTo('upload')">快速上传</el-menu-item>
+        <el-menu-item index="3" @click="switchTo('all')">文件管理</el-menu-item>
+        <el-menu-item index="4" @click="switchTo('manage')">配置管理</el-menu-item>
+    </el-menu>
+
+    <div id="uuploader" v-show="activeModule==='upload'">
+        <el-button type="primary" @click="addFile"><选择文件></选择文件><i class="el-icon-upload el-icon--right"></i></el-button>
+        <el-button type="primary" @click="submitPost">提交<i class="el-icon-check el-icon--right"></i></el-button>
+        <input type="file" id="fileinput" @change="tirggerFile($event)" style="display: none">
+        <div>
+            {{file.name}}
+        </div>
+    </div>
+
+    <div v-show="activeModule==='all'">
+        <el-table :data="fileList" border style="width: 100%">
+            <el-table-column prop="name" label="文件名" width="180"></el-table-column>
+            <el-table-column prop="size" label="大小" width="180"></el-table-column>
+            <el-table-column prop="type" label="来源" width="180"></el-table-column>
+            <el-table-column label="远程地址" width="180">
+                <template slot-scope="scope"><a :href="scope.row.remoteRelPath">{{ scope.row.remoteRelPath }}</a></template>
+            </el-table-column>
+            <el-table-column prop="localRelPath" label="本地地址" width="180"></el-table-column>
+        </el-table>
+    </div>
+
+    <div v-show="activeModule==='manage'">
+mmmm
+    </div>
+
+</div>
+<script src="./manager.js"></script>
 </body>
 </html>

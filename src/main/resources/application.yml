@@ -5,5 +5,16 @@ server:
 
 gitee:
   owner: tyrell
-  access_token: adasd
+  access_token: asdasdasd
   repo: tyrell
+  local_path: /doc/gitee
+  remote_path: https://tyrell.gitee.io
+
+spring:
+  datasource:
+    url: jdbc:sqlite:/doc/myDB.db
+    driver-class-name: org.sqlite.JDBC
+  servlet:
+    multipart:
+      max-request-size: 20MB
+      max-file-size: 20MB
