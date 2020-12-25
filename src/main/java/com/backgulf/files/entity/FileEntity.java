@@ -70,13 +70,5 @@ public class FileEntity {
 }
 
 /*
-CREATE TABLE "file_entity" (
-  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  "name" TEXT,
-  "md5" TEXT,
-  "size" TEXT,
-  "localRelPath" TEXT,
-  "remoteRelPath" TEXT,
-  "type" TEXT
-)
+CREATE TABLE "file_entity" ("id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"name" TEXT,"md5" TEXT,"size" TEXT,"localRelPath" TEXT,"remoteRelPath" TEXT,"type" TEXT)
  */

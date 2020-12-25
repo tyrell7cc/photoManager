@@ -1,7 +1,7 @@
 package com.backgulf.gitee;
 
 
-import com.backgulf.Config;
+import com.backgulf.system.Config;
 import com.backgulf.files.entity.FileEntity;
 import com.backgulf.files.service.FileService;
 import org.slf4j.Logger;
@@ -14,11 +14,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Base64;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class GiteeService {

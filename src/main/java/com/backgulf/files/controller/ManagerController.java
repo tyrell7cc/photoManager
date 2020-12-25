@@ -27,6 +27,11 @@ public class ManagerController {
         return "manager.html";
     }
 
+    @GetMapping("/login")
+    public String login(){
+        return "login.html";
+    }
+
     @PostMapping("/api/add/gitee")
     @ResponseBody
     public Map giteeAdd(@RequestParam("file") MultipartFile file){

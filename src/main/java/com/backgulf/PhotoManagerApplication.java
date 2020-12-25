@@ -8,5 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PhotoManagerApplication {
     public static void main(String[] args) {
         SpringApplication.run(PhotoManagerApplication.class,args);
+
     }
 }

@@ -1,30 +1,25 @@
-package com.backgulf;
+package com.backgulf.system;
 
 
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
-import javax.servlet.http.Cookie;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.util.List;
-import java.util.Map;
 
-@SpringBootTest
-public class PhotoManagerApplicationTests {
+@Component
+public class DBInitialize implements ApplicationRunner {
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+            this.DBInit();
+    }
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public static void main(String[] args) {
-        Cookie cookie = new Cookie("a","b");
-    }
-
-    @Test
-    public void  test(){
+    public void DBInit(){
         String sql = "select name from sqlite_master where type='table'";
         List<String> tables = jdbcTemplate.queryForList(sql,String.class);
 
@@ -34,12 +29,8 @@ public class PhotoManagerApplicationTests {
         if (!tables.contains("file_entity")){
             createTable2File();
         }
+        System.out.println("数据库初始化完成...");
     }
-
-    private void initDB(){
-        String createTable = "create table files (id int,)";
-    }
-
 
     private void createTable2File(){
         String sql = "CREATE TABLE \"file_entity\" (\"id\" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\"name\" TEXT,\"md5\" TEXT,\"size\" TEXT,\"localRelPath\" TEXT,\"remoteRelPath\" TEXT,\"type\" TEXT)\n";
@@ -52,3 +43,15 @@ public class PhotoManagerApplicationTests {
         jdbcTemplate.execute(initSQL);
     }
 }
+
+/*
+CREATE TABLE "file_entity" (
+  "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "name" TEXT,
+  "md5" TEXT,
+  "size" TEXT,
+  "localRelPath" TEXT,
+  "remoteRelPath" TEXT,
+  "type" TEXT
+)
+ */

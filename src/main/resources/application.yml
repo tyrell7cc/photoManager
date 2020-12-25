@@ -5,7 +5,7 @@ server:
 
 gitee:
   owner: tyrell
-  access_token: asdasdasd
+  access_token: bdcfc5760d83a18041a83bc17fa02ede
   repo: tyrell
   local_path: /doc/gitee
   remote_path: https://tyrell.gitee.io
